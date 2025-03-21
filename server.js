@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+const auth = require("./routes/authRoute");
+
 dotenv.config();
 const app = express();
 
@@ -21,6 +23,7 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Backend Started");
 });
+app.use("/api/users", auth);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
